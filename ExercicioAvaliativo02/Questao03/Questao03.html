@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Questao03</title>
+        <link rel="stylesheet" type="text/css" href="Questao03.css" />
+        <script>
+            var produtos = ["Computadores", "Notebooks", "Câmeras", "Headsets"];
+            function gerarLista(item) {
+                document.getElementById("Lista").innerHTML += "<li>" + item + "</li>\n";
+            }
+        </script>
+    </head>
+    <body>
+        <h1><b>Lista</b></h1>
+        <ul id="Lista">
+        </ul>
+        <button onclick="produtos.forEach(gerarLista)">Gerar Lista</button>
+    </body>
+ </html>

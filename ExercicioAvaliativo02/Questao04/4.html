@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Atividade 4</title>
+        <link rel="stylesheet" type="text/css" href="estilo4.css" />
+    </head>
+    <body>
+
+        <table style="width:95%"> 
+            <tr>
+                <th>Capa</th>
+                <th>Filme</th>
+                <th>Ano de lançamento</th>
+                <th>Gênero</th>
+            </tr>
+            <tr>
+                <td id="filme1capa"> <img src="download.jpg"></td>
+                <td id="filme1info1"></td>
+                <td id="filme1info2"></td>
+                <td id="filme1info3"></td>
+            </tr>
+            <tr>
+                <td id="filme2capa"> <img src="https://media.fstatic.com/eJM61Ke7P188ZVC9UEYEWXLu74w=/fit-in/290x478/smart/media/movies/covers/2015/06/rubber-o-pneu-assassino_t26718_Jtry8eu.jpg"> </td>
+                <td id="filme2info1"></td>
+                <td id="filme2info2"></td>
+                <td id="filme2info3"></td>
+            </tr>
+            <tr>
+                <td id="filme3capa"> <img src="https://media.fstatic.com/hctDwdoAJg-FzKAHSFIMg8OeS0k=/fit-in/290x478/smart/media/movies/covers/2018/08/last_sharknado_its_about_time_ver4.jpg"> </td>"> </td>
+                <td id="filme3info1"></td>
+                <td id="filme3info2"></td>
+                <td id="filme3info3"></td>
+            </tr>
+        </table>
+
+        <script>
+            var filme1 = {
+                titulo:"Pica-Longa e Perna-Pau VS Sônica e Monic", 
+                ano:"2020", 
+                genero:"Ação"
+            };
+            var filme2 = {
+                titulo:"Rubber, O Pneu Assassino", 
+                ano:"2010", 
+                genero:"Terror/Comédia"
+            };
+            var filme3 = {
+                titulo:"The Last Sharknado: It's About Time", 
+                ano:"2008", 
+                genero:"Ação/Terror"
+            };
+            document.getElementById("filme1info1").innerHTML = filme1.titulo;
+            document.getElementById("filme1info2").innerHTML = filme1.ano;
+            document.getElementById("filme1info3").innerHTML = filme1.genero;
+            
+            document.getElementById("filme2info1").innerHTML = filme2.titulo;
+            document.getElementById("filme2info2").innerHTML = filme2.ano;
+            document.getElementById("filme2info3").innerHTML = filme2.genero;
+            
+            document.getElementById("filme3info1").innerHTML = filme3.titulo;
+            document.getElementById("filme3info2").innerHTML = filme3.ano;
+            document.getElementById("filme3info3").innerHTML = filme3.genero;
+        </script>
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Questao05</title>
+        <link rel="stylesheet" type="text/css" href="Questao05.css" />
+        <script>
+            var soma = 0;
+            function somar(){
+                soma = Number(document.getElementById("Numero1").value) +
+                    Number(document.getElementById("Numero2").value) + 
+                    Number( document.getElementById("Numero3").value);
+                window.alert(soma);
+            }
+        </script>
+    </head>
+    <body>
+        <form onsubmit="somar()">
+            <main>
+                <div class="externo">
+                    <div class="interno"> 
+                        <label for="Numero1">Numero 1</label><br>
+                        <input type="text" id="Numero1" name="Numero1"
+                        style="background-color: rgb(76, 87, 99);
+                        border-style: solid;
+                        border-color: rgb(118, 52, 194);
+                        border-radius: 4px;">
+                    </div>
+                    <div class="interno"> 
+                        <label for="Numero2">Numero 2</label><br>
+                        <input type="text" id="Numero2" name="Numero2"
+                        style="background-color: rgb(76, 87, 99);
+                        border-style: solid;
+                        border-color: rgb(118, 52, 194);
+                        border-radius: 4px;">
+                    </div>
+                    <div class="interno"> 
+                        <label for="Numero3">Numero 3</label><br>
+                        <input type="text" id="Numero3" name="Numero3"
+                        style="background-color: rgb(76, 87, 99);
+                        border-style: solid;
+                        border-color: rgb(118, 52, 194);
+                        border-radius: 4px;">
+                    </div>
+                </div>
+                <br>
+                <input type="submit" value="Somar"
+                style="background-color: rgb(40, 46, 51);
+                font-weight: bold;
+                color: rgb(118, 52, 194);
+                border-color: rgb(118, 52, 194);
+                border-style: solid;
+                border-radius: 8px;
+                width: 100px;
+                height: 50px;">
+            </main>
+        </form>
+    </body>
+ </html>

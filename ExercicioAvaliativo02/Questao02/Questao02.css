@@ -1,0 +1,23 @@
+*{margin: 0; padding: 0;}
+
+body{
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+}
+
+img{
+    width:400px;
+    height:380px;
+}
+
+img:hover {
+    border-color: purple;
+    border-style: solid;
+    border-radius: 3px;
+}
+
+table:hover {
+    border-color: blue;
+    border-style: solid;
+    border-radius: 3px;
+}

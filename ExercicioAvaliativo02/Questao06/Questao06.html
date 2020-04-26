@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Questao06</title>
+        <link rel="stylesheet" type="text/css" href="Questao06.css" />
+        <script>
+            var fatorial = 0;
+            var numero = 0;
+            function fatora(){
+                fatorial = Number(document.getElementById("Numero").value);
+                numero = Number(document.getElementById("Numero").value) - 1;
+                while ( numero > 0 ) {
+                    fatorial = fatorial * numero;
+                    numero = numero - 1;
+                }
+                document.getElementById("Resultado").value = fatorial;
+            }
+        </script>
+    </head>
+    <body>
+        <form onsubmit="fatora(); return false">
+            <main>
+                <div class="externo">
+                    <div class="interno"> 
+                        <label for="Numero">Numero</label><br>
+                        <input type="text" id="Numero" name="Numero"
+                        style="background-color: rgb(76, 87, 99);
+                        border-style: solid;
+                        border-color: rgb(118, 52, 194);
+                        border-radius: 4px;">
+                    </div>
+                    <div class="interno"> 
+                        <label for="Resultado">Resultado</label><br>
+                        <input type="text" id="Resultado" name="Resultado"
+                        style="background-color: rgb(76, 87, 99);
+                        border-style: solid;
+                        border-color: rgb(118, 52, 194);
+                        border-radius: 4px;
+                        " readonly>
+                    </div>
+                </div>
+                <br>
+                <input type="submit" value="Somar"
+                style="background-color: rgb(40, 46, 51);
+                font-weight: bold;
+                color: rgb(118, 52, 194);
+                border-color: rgb(118, 52, 194);
+                border-style: solid;
+                border-radius: 8px;
+                width: 100px;
+                height: 50px;">
+            </main>
+        </form>
+    </body>
+ </html>
