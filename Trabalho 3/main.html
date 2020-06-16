@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Trabalho 3</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <main class="container bg-secondary align-center jumbotron vertical-center" style="margin-top:30px; border-width: 3px; border-style: solid; border-color: black;">
+            <div class = "row mx-1 my-2">
+                <div class = "col-3"></div>
+                <div class=" col-6 mx-auto">
+                    <form action="" class="needs-validation text-white" id="funcionario" method="POST">
+                        <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="name"><b>Nome:</b></label>
+                                <input type="text" class="form-control" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" id="name" placeholder="Nome" name="name" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="salary"><b>Salario:</b></label>
+                                <input type="text" class="form-control" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" id="salary" placeholder="Salario" name="salary">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="age"><b>Idade:</b></label>
+                                <input type="text" class="form-control" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" id="age" placeholder="Idade" name="age">
+                            </div>
+                            <div class="col-6">
+                                <label for="avatar"><b>Avatar:</b></label>
+                                <input type="text" class="form-control" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" id="avatar" placeholder="Avatar" name="avatar">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class = "col-1"></div>
+                            <button type="button" class="col-4 btn btn-dark" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" id ="Salvar" onclick="criarFuncionario()"><b>Salvar</b></button>
+                            <div class = "col-2"></div>
+                            <button type="reset" class="col-4 btn btn-dark" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" id ="Cancelar" onclick="resetSave();"><b>Cancelar</b></button>
+                            <div class = "col-1"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class = "col-3"></div>
+            </div>
+            <div class = "row mx-1 my-2">
+                <div class = "col-4"></div>
+                <button class=" col-4 mx-auto btn-dark" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" onclick="loadTable()">Carregar Funcionarios</button>
+                <div class = "col-4"></div>
+            </div>
+            <table class= "mx-auto table-sm table-dark table-striped table-hover table-bordered" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" id="tabela">
+                <tr>
+                  <th>Id</th>
+                  <th>Nome</th>
+                  <th>Idade</th>
+                  <th>Salario</th>
+                  <th>Avatar</th>
+                  <th>Ações</th>
+                </tr>
+            </table>   
+            <div class = "row mx-1 my-2">
+                <div class = "col-4"></div>
+                <button class=" col-4 mx-auto btn-dark" style="border-width: 2px; border-radius: 5px; border-style: solid; border-color: black;" onclick="loadTable()">Carregar Funcionarios</button>
+                <div class = "col-4"></div>
+            </div>
+        </main>
+            <script>
+
+                function resetSave() {
+                    document.getElementById("Salvar").setAttribute("onclick", "criarFuncionario()");
+                }
+                function loadFuncionario(funcionario) {
+                    document.getElementById("name").value = funcionario[1].employee_name;
+                    document.getElementById("salary").value = funcionario[1].employee_salary;
+                    document.getElementById("age").value = funcionario[1].employee_age;
+                    document.getElementById("avatar").value = funcionario[1].profile_image;
+                    document.getElementById("Salvar").setAttribute("onclick", "updateFuncionario('"+funcionario[1].id+"')");
+                    console.log(document.getElementById("Salvar"));
+                }
+
+                function getFuncionario(idFuncionario){
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var response = Object.values(JSON.parse(this.responseText));
+                            console.log(response);
+                            loadFuncionario(response);
+                        }
+                    };
+                    xhttp.open("GET", "http://rest-api-employees.jmborges.site/api/v1/employee/"+idFuncionario, true);
+                    xhttp.send();
+                }
+
+                function updateFuncionario(idFuncionario){
+                    var xhttp = new XMLHttpRequest();
+                    var registro = {
+                        name: document.getElementById("name").value ,
+                        salary: document.getElementById("salary").value ,
+                        age: document.getElementById("age").value ,
+                        profile_image: document.getElementById("avatar").value
+                    };
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var response = JSON.parse(this.responseText);
+                            console.log(response);
+                        }
+                    };
+                    xhttp.open("PUT", "http://rest-api-employees.jmborges.site/api/v1/update/"+idFuncionario, true);
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    xhttp.send(JSON.stringify(registro));
+                    console.log(JSON.stringify(registro));
+                    resetSave();
+                }
+
+                function deleteEmployee(idFuncionario){
+                    if (confirm("Deseja excluir o funcionario " + idFuncionario + " ?")) {
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                var response = JSON.parse(this.responseText);
+                                console.log(response);
+                            }
+                        };
+                        xhttp.open("DELETE", "http://rest-api-employees.jmborges.site/api/v1/delete/"+idFuncionario, true);
+                        xhttp.send();
+                    }
+                }
+                
+                function criarFuncionario() {
+                    var xhttp = new XMLHttpRequest();
+                    var registro = {
+                        name: document.getElementById("name").value ,
+                        salary: document.getElementById("salary").value ,
+                        age: document.getElementById("age").value ,
+                        profile_image: document.getElementById("avatar").value
+                    };
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var response = JSON.parse(this.responseText);
+                            console.log(response);
+                        }
+                    };
+                    xhttp.open("POST", "http://rest-api-employees.jmborges.site/api/v1/create", true);
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    xhttp.send(JSON.stringify(registro));
+                    console.log(JSON.stringify(registro));
+                    }
+
+                function isNull(link){
+                    if (link != null) {
+                        return "<td> <a class=\"mx-1 my-1\" href=\""+link+"\">Visualizar</a> </td>";
+                    } else {
+                        return "<td> <p class=\"mx-1 my-1\">Não Possui</p> </td>";
+                    }
+                }
+
+                function loadTable() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var response = JSON.parse(this.responseText);
+                            document.getElementById("tabela").innerHTML="<tr><th>Id</th><th>Nome</th><th>Idade</th><th>Salario</th><th>Avatar</th><th>Ações</th></tr>"
+                            document.getElementById("tabela").insertAdjacentHTML("beforeend", createRows(response.data));
+                            console.log(response);
+                        }
+                    };
+                    xhttp.open("GET", "http://rest-api-employees.jmborges.site/api/v1/employees", true);
+                    xhttp.send();
+                }
+
+                function createRows(data){
+                    var htmlString = "";
+                    for (i = 0; i < data.length; i++){
+                        htmlString += "<tr>" +
+                        "<td> <p class=\"mx-1 my-1\">"+data[i].id +"</p></td>" +
+                        "<td>" + data[i].employee_name + "</td>" + 
+                        "<td>" + data[i].employee_salary + "</td>" + 
+                        "<td>" + data[i].employee_age + "</td>" + 
+                        isNull(data[i].profile_imagem) +
+                        "<td><p class=\"mx-1 my-1\"><button type=\"button\" class=\"btn btn-link\" onclick=\"getFuncionario('" + data[i].id + "')\">Editar</button> | <button type=\"button\" class=\"btn btn-link\" onclick=\"deleteEmployee('" + data[i].id + "')\">Excluir</button>" +
+                        "</tr>"
+                    }
+                    return htmlString;
+                }
+
+            </script>
+
+    </body>
+
+</html>
